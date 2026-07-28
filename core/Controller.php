@@ -45,6 +45,9 @@ abstract class Controller
 
     protected function redirect(string $url): void
     {
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_write_close();
+        }
         header("Location: " . $url);
         exit;
     }

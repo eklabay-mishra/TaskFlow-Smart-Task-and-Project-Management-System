@@ -6,9 +6,18 @@ class Session
     public static function start(): void
     {
         if (session_status() === PHP_SESSION_NONE) {
+            $savePath = sys_get_temp_dir();
+            if (is_writable($savePath)) {
+                @session_save_path($savePath);
+            }
+
+            $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+                || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https');
+
             session_start([
                 'cookie_lifetime' => SESSION_LIFETIME,
                 'cookie_httponly' => true,
+                'cookie_secure'   => $isHttps,
                 'cookie_samesite' => 'Lax'
             ]);
         }
