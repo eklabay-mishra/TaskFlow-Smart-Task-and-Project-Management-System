@@ -17,7 +17,7 @@ class AuthController extends Controller
 
         $this->render('public/login', [
             'title' => 'Sign In - TaskFlow Enterprise'
-        ], 'public');
+        ], 'auth');
     }
 
     public function login(): void
@@ -60,7 +60,7 @@ class AuthController extends Controller
 
         $this->render('public/register', [
             'title' => 'Create Account - TaskFlow Enterprise'
-        ], 'public');
+        ], 'auth');
     }
 
     public function register(): void
