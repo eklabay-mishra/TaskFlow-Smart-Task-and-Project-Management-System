@@ -5,16 +5,29 @@
 
 require_once __DIR__ . '/../config/config.php';
 
-// PSR-4 Autoloader
+// PSR-4 Autoloader (Linux Case-Insensitive Resilient)
 spl_autoload_register(function ($class) {
-    $prefix = '';
     $baseDir = __DIR__ . '/../';
 
-    // Replace namespace separators with directory separators
-    $file = $baseDir . str_replace('\\', '/', $class) . '.php';
+    // Normalize namespace prefixes for Linux case sensitivity (Core -> core, App -> app)
+    $normalizedClass = $class;
+    if (str_starts_with($class, 'Core\\')) {
+        $normalizedClass = 'core' . substr($class, 4);
+    } elseif (str_starts_with($class, 'App\\')) {
+        $normalizedClass = 'app' . substr($class, 3);
+    }
+
+    $file = $baseDir . str_replace('\\', '/', $normalizedClass) . '.php';
 
     if (file_exists($file)) {
         require_once $file;
+        return;
+    }
+
+    // Direct fallback
+    $fallback = $baseDir . str_replace('\\', '/', $class) . '.php';
+    if (file_exists($fallback)) {
+        require_once $fallback;
     }
 });
 
