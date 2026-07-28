@@ -5,29 +5,41 @@
 
 require_once __DIR__ . '/../config/config.php';
 
-// PSR-4 Autoloader (Linux Case-Insensitive Resilient)
+// Explicit Core Framework Inclusions (Guarantees zero autoloader failures on Linux/Render)
+require_once __DIR__ . '/../core/Database.php';
+require_once __DIR__ . '/../core/Router.php';
+require_once __DIR__ . '/../core/Controller.php';
+require_once __DIR__ . '/../core/Model.php';
+require_once __DIR__ . '/../core/Session.php';
+require_once __DIR__ . '/../core/CSRF.php';
+require_once __DIR__ . '/../core/Auth.php';
+
+// PSR-4 Autoloader for Application Domain Models & Controllers
 spl_autoload_register(function ($class) {
     $baseDir = __DIR__ . '/../';
+    $path = str_replace('\\', '/', $class);
 
-    // Normalize namespace prefixes for Linux case sensitivity (Core -> core, App -> app)
-    $normalizedClass = $class;
-    if (str_starts_with($class, 'Core\\')) {
-        $normalizedClass = 'core' . substr($class, 4);
-    } elseif (str_starts_with($class, 'App\\')) {
-        $normalizedClass = 'app' . substr($class, 3);
-    }
-
-    $file = $baseDir . str_replace('\\', '/', $normalizedClass) . '.php';
-
-    if (file_exists($file)) {
-        require_once $file;
+    // 1. Direct match
+    if (file_exists($baseDir . $path . '.php')) {
+        require_once $baseDir . $path . '.php';
         return;
     }
 
-    // Direct fallback
-    $fallback = $baseDir . str_replace('\\', '/', $class) . '.php';
-    if (file_exists($fallback)) {
-        require_once $fallback;
+    // 2. Lowercase first directory (App -> app, Core -> core)
+    $parts = explode('/', $path);
+    $parts[0] = strtolower($parts[0]);
+    $lowFirst = implode('/', $parts) . '.php';
+    if (file_exists($baseDir . $lowFirst)) {
+        require_once $baseDir . $lowFirst;
+        return;
+    }
+
+    // 3. Uppercase first directory (app -> App, core -> Core)
+    $parts[0] = ucfirst($parts[0]);
+    $upFirst = implode('/', $parts) . '.php';
+    if (file_exists($baseDir . $upFirst)) {
+        require_once $baseDir . $upFirst;
+        return;
     }
 });
 
