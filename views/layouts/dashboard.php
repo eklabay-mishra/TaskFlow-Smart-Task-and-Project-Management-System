@@ -1,7 +1,7 @@
 <?php
 $notifModel = new \App\Models\Notification();
 $unreadCount = $currentUser ? $notifModel->getUnreadCount($currentUser['id']) : 0;
-$userTheme = $currentUser['theme_mode'] ?? 'dark'; // Default dark for ultra-premium SaaS look
+$userTheme = $currentUser['theme_mode'] ?? 'dark';
 ?>
 <!DOCTYPE html>
 <html lang="en" data-theme="<?= htmlspecialchars($userTheme) ?>">
@@ -29,60 +29,65 @@ $userTheme = $currentUser['theme_mode'] ?? 'dark'; // Default dark for ultra-pre
 
     <div id="wrapper">
         <!-- Sidebar Navigation -->
-        <div id="sidebar-wrapper">
-            <div class="sidebar-heading d-flex align-items-center justify-content-between">
-                <a href="/dashboard" class="text-white text-decoration-none d-flex align-items-center gap-3">
-                    <div class="bg-primary text-white rounded-3 p-2 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; background: linear-gradient(135deg, #6366f1, #4f46e5) !important;">
-                        <i class="bi bi-kanban-fill fs-5"></i>
-                    </div>
-                    <span class="fw-extrabold tracking-tight">TaskFlow</span>
-                </a>
-                <span class="badge bg-primary-subtle text-primary rounded-pill px-2 py-1 fs-xs">Pro</span>
-            </div>
-            
-            <div class="list-group list-group-flush my-3">
-                <a href="/dashboard" class="list-group-item list-group-item-action <?= $_SERVER['REQUEST_URI'] === '/dashboard' ? 'active' : '' ?>">
-                    <i class="bi bi-grid-1x2-fill"></i> Home Dashboard
-                </a>
-                <a href="/kanban" class="list-group-item list-group-item-action <?= $_SERVER['REQUEST_URI'] === '/kanban' ? 'active' : '' ?>">
-                    <i class="bi bi-kanban-fill"></i> Execution Pipeline
-                </a>
-                <a href="/projects" class="list-group-item list-group-item-action <?= str_starts_with($_SERVER['REQUEST_URI'], '/projects') ? 'active' : '' ?>">
-                    <i class="bi bi-folder-fill"></i> Projects & Scope
-                </a>
-                <a href="/tasks" class="list-group-item list-group-item-action <?= str_starts_with($_SERVER['REQUEST_URI'], '/tasks') ? 'active' : '' ?>">
-                    <i class="bi bi-check2-square"></i> Tasks List
-                </a>
-                <a href="/calendar" class="list-group-item list-group-item-action <?= $_SERVER['REQUEST_URI'] === '/calendar' ? 'active' : '' ?>">
-                    <i class="bi bi-calendar3"></i> Timeline Calendar
-                </a>
-                <a href="/reports" class="list-group-item list-group-item-action <?= $_SERVER['REQUEST_URI'] === '/reports' ? 'active' : '' ?>">
-                    <i class="bi bi-graph-up-arrow"></i> Reports & CSV
-                </a>
-                <a href="/notifications" class="list-group-item list-group-item-action <?= $_SERVER['REQUEST_URI'] === '/notifications' ? 'active' : '' ?>">
-                    <i class="bi bi-bell-fill"></i> Notifications
-                    <?php if ($unreadCount > 0): ?>
-                        <span class="badge bg-danger rounded-pill ms-auto" id="sidebar-unread-count"><?= $unreadCount ?></span>
-                    <?php endif; ?>
-                </a>
+        <div id="sidebar-wrapper" class="d-flex flex-column justify-content-between">
+            <div>
+                <div class="sidebar-heading d-flex align-items-center justify-content-between">
+                    <a href="/dashboard" class="text-white text-decoration-none d-flex align-items-center gap-3">
+                        <div class="bg-primary text-white rounded-3 p-2 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;">
+                            <i class="bi bi-kanban-fill fs-5"></i>
+                        </div>
+                        <span class="fw-extrabold tracking-tight fs-4">TaskFlow</span>
+                    </a>
+                    <span class="badge bg-primary-subtle text-primary rounded-pill px-2 py-1 fs-xs">Enterprise</span>
+                </div>
+                
+                <div class="list-group list-group-flush my-3">
+                    <div class="sidebar-heading text-uppercase text-muted px-3 fs-xs fw-bold mb-1">MAIN</div>
+                    <a href="/dashboard" class="list-group-item list-group-item-action <?= $_SERVER['REQUEST_URI'] === '/dashboard' ? 'active' : '' ?>">
+                        <i class="bi bi-grid-1x2-fill text-primary"></i> Dashboard
+                    </a>
+                    <a href="/kanban" class="list-group-item list-group-item-action <?= $_SERVER['REQUEST_URI'] === '/kanban' ? 'active' : '' ?>">
+                        <i class="bi bi-kanban-fill text-info"></i> Execution Pipeline
+                    </a>
+                    <a href="/projects" class="list-group-item list-group-item-action <?= str_starts_with($_SERVER['REQUEST_URI'], '/projects') ? 'active' : '' ?>">
+                        <i class="bi bi-folder-fill text-warning"></i> Projects & Scope
+                    </a>
+                    <a href="/tasks" class="list-group-item list-group-item-action <?= str_starts_with($_SERVER['REQUEST_URI'], '/tasks') ? 'active' : '' ?>">
+                        <i class="bi bi-check2-square text-success"></i> Tasks
+                    </a>
+                    <a href="/calendar" class="list-group-item list-group-item-action <?= $_SERVER['REQUEST_URI'] === '/calendar' ? 'active' : '' ?>">
+                        <i class="bi bi-calendar3 text-danger"></i> Timeline Calendar
+                    </a>
 
-                <?php if (\Core\Auth::isAdmin()): ?>
-                    <div class="sidebar-heading text-uppercase text-muted mt-3 mb-1 px-3 fs-xs fw-bold">Administration</div>
+                    <div class="sidebar-heading text-uppercase text-muted mt-3 px-3 fs-xs fw-bold mb-1">ANALYTICS</div>
+                    <a href="/reports" class="list-group-item list-group-item-action <?= $_SERVER['REQUEST_URI'] === '/reports' ? 'active' : '' ?>">
+                        <i class="bi bi-graph-up-arrow text-primary"></i> Reports & Analytics
+                    </a>
+
+                    <div class="sidebar-heading text-uppercase text-muted mt-3 px-3 fs-xs fw-bold mb-1">MANAGEMENT</div>
                     <a href="/users" class="list-group-item list-group-item-action <?= $_SERVER['REQUEST_URI'] === '/users' ? 'active' : '' ?>">
-                        <i class="bi bi-people-fill"></i> User Accounts
+                        <i class="bi bi-people-fill text-info"></i> Team Members
+                    </a>
+
+                    <div class="sidebar-heading text-uppercase text-muted mt-3 px-3 fs-xs fw-bold mb-1">SYSTEM</div>
+                    <a href="/notifications" class="list-group-item list-group-item-action <?= $_SERVER['REQUEST_URI'] === '/notifications' ? 'active' : '' ?>">
+                        <i class="bi bi-bell-fill text-warning"></i> Notifications
+                        <?php if ($unreadCount > 0): ?>
+                            <span class="badge bg-danger rounded-pill ms-auto" id="sidebar-unread-count"><?= $unreadCount ?></span>
+                        <?php endif; ?>
                     </a>
                     <a href="/settings" class="list-group-item list-group-item-action <?= $_SERVER['REQUEST_URI'] === '/settings' ? 'active' : '' ?>">
-                        <i class="bi bi-gear-fill"></i> System Settings
+                        <i class="bi bi-gear-fill text-secondary"></i> Settings
                     </a>
-                <?php endif; ?>
+                </div>
+            </div>
 
-                <div class="sidebar-heading text-uppercase text-muted mt-3 mb-1 px-3 fs-xs fw-bold">Account</div>
-                <a href="/profile" class="list-group-item list-group-item-action <?= $_SERVER['REQUEST_URI'] === '/profile' ? 'active' : '' ?>">
-                    <i class="bi bi-person-circle"></i> Profile & Security
-                </a>
-                <a href="/logout" class="list-group-item list-group-item-action text-danger mt-2">
-                    <i class="bi bi-box-arrow-right"></i> Sign Out
-                </a>
+            <!-- Upgrade to Pro Card Widget -->
+            <div class="p-3 m-3 rounded-4 glass-panel border border-primary border-opacity-25 text-center">
+                <div class="text-warning mb-1"><i class="bi bi-stars fs-4"></i></div>
+                <h6 class="fw-bold mb-1 fs-sm">Upgrade to Pro</h6>
+                <p class="text-muted fs-xs mb-3">Unlock advanced analytics, AI workload predictions & custom workflows.</p>
+                <button type="button" class="btn btn-primary btn-sm rounded-pill w-100 py-2">Upgrade Now</button>
             </div>
         </div>
 
@@ -94,20 +99,32 @@ $userTheme = $currentUser['theme_mode'] ?? 'dark'; // Default dark for ultra-pre
                     <button class="btn btn-outline-secondary btn-sm border-0 rounded-circle" id="sidebar-toggle">
                         <i class="bi bi-list fs-5"></i>
                     </button>
-                    <!-- Global Search Form Pill -->
-                    <form action="/tasks" method="GET" class="d-none d-md-flex align-items-center" style="min-width: 320px;">
+
+                    <!-- Search Input with Keyboard Shortcut Pill -->
+                    <form action="/tasks" method="GET" class="d-none d-md-flex align-items-center" style="min-width: 340px;">
                         <div class="w-100 position-relative">
                             <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-                            <input type="text" name="search" class="form-control search-input-pill ps-5" placeholder="Search tasks, candidates, projects..." value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
+                            <input type="text" name="search" class="form-control search-input-pill ps-5 pe-5" placeholder="Search tasks, projects, pipelines..." value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
+                            <span class="position-absolute top-50 end-0 translate-middle-y me-3 badge bg-secondary-subtle text-muted fs-xs">⌘K</span>
                         </div>
                     </form>
                 </div>
 
                 <div class="d-flex align-items-center gap-3">
-                    <!-- Dark Mode Toggle Button -->
-                    <button class="btn btn-outline-secondary btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" id="theme-toggle-btn" title="Toggle Theme">
+                    <!-- Create New Task Button -->
+                    <a href="/tasks" class="btn btn-primary rounded-pill px-3 py-2 d-flex align-items-center gap-2 shadow-sm fs-xs fw-bold">
+                        <i class="bi bi-plus-lg"></i> <span>Create New Task</span>
+                    </a>
+
+                    <!-- Dark Mode Toggle -->
+                    <button class="btn btn-outline-secondary btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" id="theme-toggle-btn" title="Toggle Light/Dark Theme">
                         <i class="bi bi-moon-stars-fill"></i>
                     </button>
+
+                    <!-- Messages Icon -->
+                    <a href="/tasks" class="btn btn-outline-secondary btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center text-body" title="Task Discussions">
+                        <i class="bi bi-chat-text fs-6"></i>
+                    </a>
 
                     <!-- Notifications Dropdown -->
                     <div class="dropdown">
@@ -119,10 +136,10 @@ $userTheme = $currentUser['theme_mode'] ?? 'dark'; // Default dark for ultra-pre
                                 </span>
                             <?php endif; ?>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end shadow border-0 p-0" style="width: 320px;">
+                        <div class="dropdown-menu dropdown-menu-end shadow-lg border-0 p-0" style="width: 320px;">
                             <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
-                                <h6 class="mb-0 fw-bold">Notifications</h6>
-                                <a href="/notifications" class="text-primary fs-xs text-decoration-none">View Inbox</a>
+                                <h6 class="mb-0 fw-bold">Notifications Inbox</h6>
+                                <a href="/notifications" class="text-primary fs-xs text-decoration-none">View All</a>
                             </div>
                             <div class="list-group list-group-flush fs-sm" style="max-height: 280px; overflow-y: auto;">
                                 <a href="/notifications" class="list-group-item list-group-item-action py-3 text-center text-muted">
@@ -141,7 +158,7 @@ $userTheme = $currentUser['theme_mode'] ?? 'dark'; // Default dark for ultra-pre
                                 <div class="text-muted fs-xs lh-1 mt-1"><?= htmlspecialchars($currentUser['role_name'] ?? 'Team Member') ?></div>
                             </div>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0">
                             <li><a class="dropdown-item" href="/profile"><i class="bi bi-person me-2"></i> My Profile</a></li>
                             <li><a class="dropdown-item" href="/tasks"><i class="bi bi-check2-square me-2"></i> My Tasks</a></li>
                             <li><hr class="dropdown-divider"></li>
@@ -155,14 +172,14 @@ $userTheme = $currentUser['theme_mode'] ?? 'dark'; // Default dark for ultra-pre
             <div class="container-fluid p-4 flex-grow-1">
                 <!-- Flash Messages -->
                 <?php if ($flashSuccess): ?>
-                    <div class="alert alert-success alert-dismissible fade show shadow-sm mb-4 border-0 rounded-3" role="alert">
+                    <div class="alert alert-success alert-dismissible fade show shadow-sm mb-4 border-0 rounded-4" role="alert">
                         <i class="bi bi-check-circle-fill me-2"></i> <?= htmlspecialchars($flashSuccess) ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 <?php endif; ?>
 
                 <?php if ($flashError): ?>
-                    <div class="alert alert-danger alert-dismissible fade show shadow-sm mb-4 border-0 rounded-3" role="alert">
+                    <div class="alert alert-danger alert-dismissible fade show shadow-sm mb-4 border-0 rounded-4" role="alert">
                         <i class="bi bi-exclamation-triangle-fill me-2"></i> <?= htmlspecialchars($flashError) ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
@@ -172,9 +189,9 @@ $userTheme = $currentUser['theme_mode'] ?? 'dark'; // Default dark for ultra-pre
             </div>
 
             <!-- Footer -->
-            <footer class="py-3 border-top px-4 text-muted small d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <div>TaskFlow Enterprise &copy; <?= date('Y') ?> | Full-Stack PHP 8 MVC & MySQL System</div>
-                <div>Signed in as: <strong><?= htmlspecialchars($currentUser['name']) ?></strong> (<?= htmlspecialchars($currentUser['role_name']) ?>)</div>
+            <footer class="py-3 border-top border-secondary border-opacity-10 px-4 text-muted small d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div>TaskFlow Enterprise &copy; <?= date('Y') ?> | Full-Stack Commercial SaaS Application</div>
+                <div>Connected User: <strong><?= htmlspecialchars($currentUser['name']) ?></strong> (<?= htmlspecialchars($currentUser['role_name']) ?>)</div>
             </footer>
         </div>
     </div>

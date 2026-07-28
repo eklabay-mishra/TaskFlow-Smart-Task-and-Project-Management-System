@@ -138,8 +138,8 @@ class Project extends Model
             $data['category'] ?? 'General',
             $data['status'] ?? 'planning',
             $data['priority'] ?? 'medium',
-            $data['start_date'] ?? null,
-            $data['due_date'] ?? null,
+            (!empty($data['start_date'])) ? $data['start_date'] : null,
+            (!empty($data['due_date'])) ? $data['due_date'] : null,
             $data['budget'] ?? 0.00,
             $data['created_by']
         ]);
@@ -171,10 +171,21 @@ class Project extends Model
             $data['category'] ?? 'General',
             $data['status'] ?? 'planning',
             $data['priority'] ?? 'medium',
-            $data['start_date'] ?? null,
-            $data['due_date'] ?? null,
+            (!empty($data['start_date'])) ? $data['start_date'] : null,
+            (!empty($data['due_date'])) ? $data['due_date'] : null,
             $data['budget'] ?? 0.00,
             $id
         ]);
+    }
+
+    // Analytics Methods
+    public function getProjectsByCategory(): array
+    {
+        return $this->db->fetchAll(
+            "SELECT category, COUNT(*) as count 
+             FROM projects 
+             GROUP BY category 
+             ORDER BY count DESC"
+        );
     }
 }

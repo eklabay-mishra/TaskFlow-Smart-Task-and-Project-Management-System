@@ -85,14 +85,14 @@ class Task extends Model
         
         $this->db->execute($sql, [
             $data['project_id'],
-            $data['milestone_id'] ?: null,
-            $data['assigned_to'] ?: null,
+            (!empty($data['milestone_id'])) ? $data['milestone_id'] : null,
+            (!empty($data['assigned_to'])) ? $data['assigned_to'] : null,
             $data['created_by'],
             $data['title'],
             $data['description'] ?? null,
             $data['status'] ?? 'todo',
             $data['priority'] ?? 'medium',
-            $data['due_date'] ?? null,
+            (!empty($data['due_date'])) ? $data['due_date'] : null,
             $data['estimated_hours'] ?? 0.00,
             $data['logged_hours'] ?? 0.00
         ]);
@@ -117,13 +117,13 @@ class Task extends Model
 
         return $this->db->execute($sql, [
             $data['project_id'],
-            $data['milestone_id'] ?: null,
-            $data['assigned_to'] ?: null,
+            (!empty($data['milestone_id'])) ? $data['milestone_id'] : null,
+            (!empty($data['assigned_to'])) ? $data['assigned_to'] : null,
             $data['title'],
             $data['description'] ?? null,
             $data['status'] ?? 'todo',
             $data['priority'] ?? 'medium',
-            $data['due_date'] ?? null,
+            (!empty($data['due_date'])) ? $data['due_date'] : null,
             $data['estimated_hours'] ?? 0.00,
             $data['logged_hours'] ?? 0.00,
             $id
@@ -175,5 +175,50 @@ class Task extends Model
         }
 
         return $this->db->fetchAll($sql, $params);
+    }
+
+    // Analytics Methods
+    public function getUpcomingDeadlines(int $limit = 5, ?int $userId = null): array
+    {
+        $sql = "SELECT t.*, p.title as project_title 
+                FROM tasks t
+                JOIN projects p ON t.project_id = p.id
+                WHERE t.due_date >= CURDATE() AND t.status != 'done'";
+        $params = [];
+
+        if ($userId) {
+            $sql .= " AND (t.assigned_to = ? OR t.created_by = ?)";
+            $params = [$userId, $userId];
+        }
+
+        $sql .= " ORDER BY t.due_date ASC LIMIT ?";
+        $params[] = $limit;
+
+        return $this->db->fetchAll($sql, $params);
+    }
+
+    public function getProjectProgressTrend(): array
+    {
+        // 7-day trend sample generator backed by database totals
+        $dates = [];
+        $completedSeries = [];
+        $inProgressSeries = [];
+
+        for ($i = 6; $i >= 0; $i--) {
+            $date = date('Y-m-d', strtotime("-{$i} days"));
+            $dates[] = date('d M', strtotime($date));
+            
+            $comp = $this->db->fetch("SELECT COUNT(*) as c FROM tasks WHERE status='done' AND DATE(updated_at) <= ?", [$date]);
+            $inProg = $this->db->fetch("SELECT COUNT(*) as c FROM tasks WHERE status='in_progress' AND DATE(updated_at) <= ?", [$date]);
+            
+            $completedSeries[] = (int)($comp['c'] ?? 0);
+            $inProgressSeries[] = (int)($inProg['c'] ?? 0);
+        }
+
+        return [
+            'labels'      => $dates,
+            'completed'   => $completedSeries,
+            'in_progress' => $inProgressSeries
+        ];
     }
 }
