@@ -1,7 +1,8 @@
 FROM php:8.2-apache
 
-# Install system dependencies and PHP extensions
+# Install MariaDB server, GD, PDO MySQL, Zip
 RUN apt-get update && apt-get install -y \
+    mariadb-server \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
