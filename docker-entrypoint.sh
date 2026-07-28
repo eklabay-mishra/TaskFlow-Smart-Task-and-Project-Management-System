@@ -12,6 +12,16 @@ fi
 if [ "$DB_HOST" = "127.0.0.1" ] || [ -z "$DB_HOST" ]; then
     echo "[✓] Starting internal MariaDB database engine..."
     service mariadb start || service mysql start || true
+
+    # Configure MariaDB authentication to allow PDO root connection without unix_socket error
+    echo "[✓] Configuring MariaDB root user privileges for PHP PDO..."
+    mysql -u root -e "
+        ALTER USER 'root'@'localhost' IDENTIFIED VIA mysql_native_password USING PASSWORD('');
+        CREATE USER IF NOT EXISTS 'root'@'127.0.0.1' IDENTIFIED BY '';
+        GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
+        GRANT ALL PRIVILEGES ON *.* TO 'root'@'127.0.0.1' WITH GRANT OPTION;
+        FLUSH PRIVILEGES;
+    " || true
 fi
 
 echo "Verifying Database Connection & Running Seeder..."
