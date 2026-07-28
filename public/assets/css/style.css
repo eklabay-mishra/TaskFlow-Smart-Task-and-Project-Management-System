@@ -1,348 +1,539 @@
-/* TaskFlow Ultra-Premium Dark Glassmorphic Design System */
-
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+/* ==========================================================================
+   TASKFLOW ENTERPRISE - LUXURY PITCH-BLACK SAAS DESIGN SYSTEM
+   Inspired by Linear, Raycast, Vercel, Supabase & ClickUp Dark Theme
+   ========================================================================== */
 
 :root {
-    --tf-bg-gradient: radial-gradient(circle at 15% 15%, #1e1b4b 0%, #0f172a 40%, #090d16 100%);
-    --tf-card-bg: rgba(30, 41, 59, 0.65);
-    --tf-card-bg-hover: rgba(47, 63, 90, 0.75);
-    --tf-card-border: rgba(255, 255, 255, 0.08);
-    --tf-sidebar-bg: rgba(15, 23, 42, 0.85);
-    --tf-topbar-bg: rgba(15, 23, 42, 0.6);
+    /* Color Tokens (Pitch Black Luxury Dark Mode Default) */
+    --tf-bg-canvas: #05070b;
+    --tf-bg-sidebar: #090c13;
+    --tf-bg-topbar: rgba(9, 12, 19, 0.85);
+    --tf-bg-card: #0d111a;
+    --tf-bg-card-glass: rgba(13, 17, 26, 0.75);
+    --tf-bg-subtle: #121826;
+    --tf-bg-hover: rgba(255, 255, 255, 0.04);
     
+    /* Borders & Lines */
+    --tf-border: rgba(255, 255, 255, 0.07);
+    --tf-border-focus: rgba(99, 102, 241, 0.5);
+    --tf-border-glow: rgba(99, 102, 241, 0.25);
+    
+    /* Text Colors */
+    --tf-text-heading: #ffffff;
+    --tf-text-body: #cbd5e1;
+    --tf-text-secondary: #94a3b8;
+    --tf-text-muted: #64748b;
+    
+    /* Brand & Accent Gradients */
     --tf-primary: #6366f1;
     --tf-primary-hover: #4f46e5;
-    --tf-primary-glow: rgba(99, 102, 241, 0.25);
+    --tf-primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    --tf-success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    --tf-warning-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    --tf-danger-gradient: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
     
-    --tf-text-main: #f8fafc;
-    --tf-text-muted: #94a3b8;
-    --tf-text-subtle: #64748b;
+    /* Functional Status Colors */
+    --tf-success: #10b981;
+    --tf-warning: #f59e0b;
+    --tf-danger: #ef4444;
+    --tf-info: #38bdf8;
+    --tf-purple: #a855f7;
+
+    /* Border Radius System (16px - 20px) */
+    --tf-radius-sm: 0.5rem;   /* 8px */
+    --tf-radius-md: 0.75rem;  /* 12px */
+    --tf-radius-lg: 1rem;     /* 16px */
+    --tf-radius-xl: 1.25rem;  /* 20px */
+    --tf-radius-pill: 50rem;
     
-    --tf-badge-bg: rgba(255, 255, 255, 0.07);
-    --tf-badge-border: rgba(255, 255, 255, 0.1);
+    /* Soft Elevation Shadows */
+    --tf-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --tf-shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
+    --tf-shadow-lg: 0 16px 36px -8px rgba(0, 0, 0, 0.6);
+    --tf-shadow-glow: 0 0 25px rgba(99, 102, 241, 0.15);
     
-    --tf-glass-blur: blur(16px);
-    --tf-shadow-glass: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 15px rgba(99, 102, 241, 0.05);
+    --tf-sidebar-width: 260px;
+    --tf-topbar-height: 70px;
 }
 
-[data-theme="light"] {
-    --tf-bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-    --tf-card-bg: rgba(255, 255, 255, 0.85);
-    --tf-card-bg-hover: rgba(255, 255, 255, 1);
-    --tf-card-border: rgba(0, 0, 0, 0.08);
-    --tf-sidebar-bg: rgba(255, 255, 255, 0.95);
-    --tf-topbar-bg: rgba(255, 255, 255, 0.9);
-    
-    --tf-text-main: #0f172a;
-    --tf-text-muted: #475569;
-    --tf-text-subtle: #94a3b8;
-    
-    --tf-badge-bg: rgba(0, 0, 0, 0.05);
-    --tf-badge-border: rgba(0, 0, 0, 0.1);
-    --tf-shadow-glass: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
-}
-
-body {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background: var(--tf-bg-gradient);
-    background-attachment: fixed;
-    color: var(--tf-text-main);
+/* Force Pitch-Black Body Canvas Across All Screens */
+html, body {
+    background-color: var(--tf-bg-canvas) !important;
+    color: var(--tf-text-body) !important;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.925rem;
+    letter-spacing: -0.01em;
     min-height: 100vh;
-    transition: background 0.3s ease, color 0.3s ease;
+    margin: 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Glass Panels */
-.glass-panel {
-    background: var(--tf-card-bg);
-    border: 1px solid var(--tf-card-border);
-    backdrop-filter: var(--tf-glass-blur);
-    -webkit-backdrop-filter: var(--tf-glass-blur);
-    border-radius: 1rem;
-    box-shadow: var(--tf-shadow-glass);
+/* Ambient Subtle Background Glow Effects */
+body::before {
+    content: "";
+    position: fixed;
+    top: -10%;
+    left: 20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
 }
 
-.card {
-    background: var(--tf-card-bg);
-    border: 1px solid var(--tf-card-border);
-    backdrop-filter: var(--tf-glass-blur);
-    -webkit-backdrop-filter: var(--tf-glass-blur);
-    border-radius: 1rem;
-    color: var(--tf-text-main);
-    box-shadow: var(--tf-shadow-glass);
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+body::after {
+    content: "";
+    position: fixed;
+    bottom: -10%;
+    right: 15%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
 }
 
-.card-hover:hover {
-    transform: translateY(-4px);
-    background: var(--tf-card-bg-hover);
-    border-color: rgba(99, 102, 241, 0.4);
-    box-shadow: 0 25px 45px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(99, 102, 241, 0.15);
-}
-
-/* Layout Structure */
 #wrapper {
     display: flex;
-    width: 100%;
     min-height: 100vh;
+    position: relative;
+    z-index: 1;
 }
+
+/* ==========================================================================
+   SIDEBAR NAVIGATION (OBSIDIAN DARK)
+   ========================================================================== */
 
 #sidebar-wrapper {
-    min-width: 260px;
-    max-width: 260px;
-    background: var(--tf-sidebar-bg);
-    border-right: 1px solid var(--tf-card-border);
-    backdrop-filter: var(--tf-glass-blur);
-    -webkit-backdrop-filter: var(--tf-glass-blur);
-    transition: all 0.3s ease;
-    z-index: 1000;
+    width: var(--tf-sidebar-width);
+    background: var(--tf-bg-sidebar) !important;
+    border-right: 1px solid var(--tf-border) !important;
+    flex-shrink: 0;
+    transition: margin-left 0.25s ease-in-out;
+    z-index: 1040;
 }
 
-#sidebar-wrapper .sidebar-heading {
-    padding: 1.5rem 1.75rem;
-    font-size: 1.35rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    border-bottom: 1px solid var(--tf-card-border);
+.sidebar-heading {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--tf-border);
 }
 
-#sidebar-wrapper .list-group-item {
-    background: transparent;
-    color: var(--tf-text-muted);
-    border: none;
-    padding: 0.8rem 1.25rem;
-    font-weight: 600;
-    font-size: 0.925rem;
+.list-group-item {
+    background-color: transparent !important;
+    color: var(--tf-text-secondary) !important;
+    border: none !important;
+    padding: 0.75rem 1.25rem !important;
+    margin: 0.15rem 0.85rem !important;
+    border-radius: var(--tf-radius-md) !important;
+    font-weight: 500;
+    font-size: 0.875rem;
     display: flex;
     align-items: center;
-    gap: 0.85rem;
-    border-radius: 0.75rem;
-    margin: 0.2rem 0.85rem;
+    gap: 0.75rem;
     transition: all 0.2s ease;
 }
 
-#sidebar-wrapper .list-group-item i {
-    font-size: 1.15rem;
+.list-group-item i {
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
 }
 
-#sidebar-wrapper .list-group-item:hover {
-    color: var(--tf-text-main);
-    background: rgba(255, 255, 255, 0.05);
+.list-group-item:hover {
+    color: var(--tf-text-heading) !important;
+    background: var(--tf-bg-hover) !important;
 }
 
-#sidebar-wrapper .list-group-item.active {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(79, 70, 229, 0.4));
-    color: #ffffff;
-    border: 1px solid rgba(99, 102, 241, 0.4);
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+.list-group-item:hover i {
+    transform: scale(1.15);
 }
 
-/* Topbar Header */
+.list-group-item.active {
+    background: rgba(99, 102, 241, 0.15) !important;
+    color: #818cf8 !important;
+    font-weight: 700;
+    border-left: 3px solid var(--tf-primary) !important;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.1);
+}
+
+/* Sidebar Toggle Collapse */
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: calc(-1 * var(--tf-sidebar-width));
+}
+
+/* ==========================================================================
+   TOPBAR HEADER (GLASS TRANSLUCENT)
+   ========================================================================== */
+
 .topbar {
-    background: var(--tf-topbar-bg);
-    border-bottom: 1px solid var(--tf-card-border);
-    backdrop-filter: var(--tf-glass-blur);
-    -webkit-backdrop-filter: var(--tf-glass-blur);
-    padding: 0.85rem 2rem;
+    height: var(--tf-topbar-height);
+    background: var(--tf-bg-topbar) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--tf-border) !important;
+    padding: 0 1.75rem;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
 }
 
 .search-input-pill {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--tf-card-border);
-    border-radius: 9999px;
-    padding: 0.55rem 1.25rem;
-    color: var(--tf-text-main);
-    font-size: 0.9rem;
-    transition: all 0.2s;
+    background-color: var(--tf-bg-subtle) !important;
+    border: 1px solid var(--tf-border) !important;
+    color: var(--tf-text-heading) !important;
+    border-radius: var(--tf-radius-pill) !important;
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
 }
 
 .search-input-pill:focus {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--tf-primary);
-    box-shadow: 0 0 15px var(--tf-primary-glow);
-    color: var(--tf-text-main);
-    outline: none;
+    border-color: var(--tf-border-focus) !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+    background-color: #0f1422 !important;
 }
 
-/* Buttons Styling */
-.btn-primary {
-    background: linear-gradient(135deg, #6366f1, #4f46e5);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
-    font-weight: 600;
+/* ==========================================================================
+   CARDS & PANELS (SENIOR SAAS GLASS LUXURY)
+   ========================================================================== */
+
+.card, .glass-panel {
+    background: var(--tf-bg-card) !important;
+    border: 1px solid var(--tf-border) !important;
+    border-radius: var(--tf-radius-lg) !important;
+    box-shadow: var(--tf-shadow-md) !important;
+    color: var(--tf-text-body) !important;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.btn-primary:hover {
-    background: linear-gradient(135deg, #4f46e5, #4338ca);
-    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
-}
-
-.btn-pill {
-    border-radius: 9999px;
-    padding: 0.55rem 1.35rem;
-}
-
-/* Kanban Board Glass Styling */
-.kanban-board {
-    display: flex;
-    gap: 1.35rem;
-    overflow-x: auto;
-    padding-bottom: 1.5rem;
-}
-
-.kanban-column {
-    flex: 1;
-    min-width: 310px;
-    max-width: 360px;
-    background: rgba(15, 23, 42, 0.45);
-    border: 1px solid var(--tf-card-border);
-    border-radius: 1.15rem;
-    padding: 1.15rem;
-    backdrop-filter: var(--tf-glass-blur);
-}
-
-.kanban-header {
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: -0.2px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.15rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--tf-card-border);
-}
-
-.kanban-cards {
-    min-height: 420px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.kanban-card {
-    background: rgba(30, 41, 59, 0.75);
-    border: 1px solid var(--tf-card-border);
-    border-radius: 0.95rem;
-    padding: 1.15rem;
-    cursor: grab;
-    backdrop-filter: blur(10px);
-    transition: all 0.25s ease;
-}
-
-.kanban-card:hover {
-    background: rgba(47, 63, 90, 0.9);
-    border-color: rgba(99, 102, 241, 0.4);
-    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.5);
+.card:hover {
+    border-color: var(--tf-border-glow) !important;
+    box-shadow: var(--tf-shadow-lg), var(--tf-shadow-glow) !important;
     transform: translateY(-2px);
 }
 
-.kanban-card.dragging {
-    opacity: 0.4;
-    transform: scale(0.96);
+.card-header {
+    background: transparent !important;
+    border-bottom: 1px solid var(--tf-border) !important;
+    padding: 1.25rem 1.5rem;
 }
 
-/* Card Tag Pills */
-.tag-pill {
-    background: var(--tf-badge-bg);
-    border: 1px solid var(--tf-badge-border);
-    color: var(--tf-text-muted);
-    font-size: 0.75rem;
+/* Stat Cards Aesthetics */
+.stat-card-num {
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: var(--tf-text-heading);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.stat-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--tf-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--tf-border);
+}
+
+/* ==========================================================================
+   BUTTONS & ACCENTS
+   ========================================================================== */
+
+.btn-primary {
+    background: var(--tf-primary-gradient) !important;
+    border: none !important;
+    color: #ffffff !important;
     font-weight: 600;
-    padding: 0.25rem 0.65rem;
-    border-radius: 9999px;
+    border-radius: var(--tf-radius-pill) !important;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
+    transition: all 0.2s ease !important;
 }
 
-/* Priority Badges */
-.badge-priority-urgent { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
-.badge-priority-high { background: rgba(245, 158, 11, 0.15); color: #fde047; border: 1px solid rgba(245, 158, 11, 0.3); }
-.badge-priority-medium { background: rgba(14, 165, 233, 0.15); color: #7dd3fc; border: 1px solid rgba(14, 165, 233, 0.3); }
-.badge-priority-low { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45) !important;
+}
 
-/* Status Badges */
-.badge-status-planning { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
-.badge-status-active { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.3); }
-.badge-status-on_hold { background: rgba(245, 158, 11, 0.15); color: #fde047; border: 1px solid rgba(245, 158, 11, 0.3); }
-.badge-status-completed { background: rgba(99, 102, 241, 0.15); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.3); }
+.btn-outline-primary {
+    border-color: rgba(99, 102, 241, 0.4) !important;
+    color: #818cf8 !important;
+    background: rgba(99, 102, 241, 0.08) !important;
+    border-radius: var(--tf-radius-pill) !important;
+    font-weight: 600;
+}
 
-/* Progress Bar */
+.btn-outline-primary:hover {
+    background: var(--tf-primary-gradient) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+}
+
+.btn-outline-secondary {
+    border-color: var(--tf-border) !important;
+    color: var(--tf-text-secondary) !important;
+    background: var(--tf-bg-subtle) !important;
+}
+
+.btn-outline-secondary:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: var(--tf-text-heading) !important;
+}
+
+/* ==========================================================================
+   TABLES (OBSIDIAN DARK MATRIX)
+   ========================================================================== */
+
+.table-responsive {
+    border-radius: var(--tf-radius-lg);
+}
+
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--tf-text-body);
+    --bs-table-hover-bg: rgba(255, 255, 255, 0.02);
+    border-color: var(--tf-border) !important;
+    margin-bottom: 0;
+}
+
+.table th {
+    background: var(--tf-bg-sidebar) !important;
+    color: var(--tf-text-muted) !important;
+    font-size: 0.725rem;
+    font-weight: 700;
+    text-uppercase: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.9rem 1.25rem;
+    border-bottom: 1px solid var(--tf-border) !important;
+}
+
+.table td {
+    padding: 1rem 1.25rem;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--tf-border) !important;
+    color: var(--tf-text-body);
+}
+
+.table tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* Progress Bars */
 .progress {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 9999px;
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    border-radius: var(--tf-radius-pill) !important;
     overflow: hidden;
 }
 
 .progress-bar {
-    background: linear-gradient(90deg, #6366f1, #06b6d4);
-    box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+    background: var(--tf-primary-gradient) !important;
+    border-radius: var(--tf-radius-pill) !important;
 }
 
-/* User Avatar */
+/* ==========================================================================
+   BADGES & PILLS
+   ========================================================================== */
+
+.badge-status-active, .badge-status-done {
+    background: rgba(16, 185, 129, 0.15) !important;
+    color: #34d399 !important;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-status-in_progress, .badge-status-planning {
+    background: rgba(99, 102, 241, 0.15) !important;
+    color: #818cf8 !important;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.badge-status-todo, .badge-status-on_hold {
+    background: rgba(100, 116, 139, 0.15) !important;
+    color: #94a3b8 !important;
+    border: 1px solid rgba(100, 116, 139, 0.3);
+}
+
+.badge-status-review {
+    background: rgba(245, 158, 11, 0.15) !important;
+    color: #fbbf24 !important;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-priority-low {
+    background: rgba(148, 163, 184, 0.15) !important;
+    color: #cbd5e1 !important;
+}
+.badge-priority-medium {
+    background: rgba(56, 189, 248, 0.15) !important;
+    color: #38bdf8 !important;
+}
+.badge-priority-high {
+    background: rgba(245, 158, 11, 0.15) !important;
+    color: #fbbf24 !important;
+}
+.badge-priority-urgent {
+    background: rgba(239, 68, 68, 0.15) !important;
+    color: #f87171 !important;
+}
+
+.tag-pill {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--tf-border);
+    color: var(--tf-text-secondary);
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--tf-radius-pill);
+    font-size: 0.725rem;
+    font-weight: 500;
+}
+
+/* Avatars */
 .avatar-sm {
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--tf-border);
 }
 
 .avatar-md {
-    width: 46px;
-    height: 46px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid rgba(255, 255, 255, 0.15);
+    border: 2px solid var(--tf-border);
 }
 
-.avatar-lg {
-    width: 84px;
-    height: 84px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--tf-primary);
-    box-shadow: 0 0 20px var(--tf-primary-glow);
+/* ==========================================================================
+   KANBAN PIPELINE BOARD
+   ========================================================================== */
+
+.kanban-board {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(280px, 1fr));
+    gap: 1.25rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
 }
 
-/* Table Styling */
-.table {
-    color: var(--tf-text-main);
+.kanban-column {
+    background: rgba(9, 12, 19, 0.6) !important;
+    border: 1px solid var(--tf-border);
+    border-radius: var(--tf-radius-xl);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 600px;
 }
 
-.table th {
-    background: transparent;
-    border-bottom: 1px solid var(--tf-card-border);
-    color: var(--tf-text-muted);
+.kanban-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding-bottom: 0.85rem;
+    margin-bottom: 0.85rem;
+    border-bottom: 1px solid var(--tf-border);
 }
 
-.table td {
-    border-bottom: 1px solid var(--tf-card-border);
-    background: transparent;
-    color: var(--tf-text-main);
+.kanban-cards {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
 }
 
-/* Modal Styling */
-.modal-content {
-    background: rgba(15, 23, 42, 0.95);
-    border: 1px solid var(--tf-card-border);
-    backdrop-filter: blur(24px);
-    border-radius: 1.25rem;
-    color: var(--tf-text-main);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+.kanban-card {
+    background: var(--tf-bg-card) !important;
+    border: 1px solid var(--tf-border) !important;
+    border-radius: var(--tf-radius-lg);
+    padding: 1.15rem;
+    cursor: grab;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.modal-header, .modal-footer {
-    border-color: var(--tf-card-border);
+.kanban-card:hover {
+    border-color: var(--tf-border-glow) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.kanban-card:active {
+    cursor: grabbing;
+}
+
+/* ==========================================================================
+   MODALS, DROPDOWNS & ALERTS (OBSIDIAN DARK)
+   ========================================================================== */
+
+.modal-content, .dropdown-menu {
+    background-color: #0c101a !important;
+    border: 1px solid var(--tf-border) !important;
+    border-radius: var(--tf-radius-xl) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8) !important;
+    color: var(--tf-text-body) !important;
+}
+
+.dropdown-item {
+    color: var(--tf-text-secondary) !important;
+    padding: 0.6rem 1.15rem;
+    font-weight: 500;
+    border-radius: var(--tf-radius-md);
+    margin: 0.15rem 0.5rem;
+}
+
+.dropdown-item:hover {
+    background-color: var(--tf-bg-hover) !important;
+    color: var(--tf-text-heading) !important;
 }
 
 .form-control, .form-select {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--tf-card-border);
-    color: var(--tf-text-main);
-    border-radius: 0.65rem;
+    background-color: #080b12 !important;
+    border: 1px solid var(--tf-border) !important;
+    color: var(--tf-text-heading) !important;
+    border-radius: var(--tf-radius-md) !important;
 }
 
 .form-control:focus, .form-select:focus {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: var(--tf-primary);
-    color: var(--tf-text-main);
-    box-shadow: 0 0 15px var(--tf-primary-glow);
+    border-color: var(--tf-border-focus) !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+}
+
+/* Flash alerts translucent dark styling */
+.alert-success {
+    background: rgba(16, 185, 129, 0.12) !important;
+    border: 1px solid rgba(16, 185, 129, 0.3) !important;
+    color: #34d399 !important;
+}
+
+.alert-danger {
+    background: rgba(239, 68, 68, 0.12) !important;
+    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+    color: #f87171 !important;
+}
+
+/* Text Utility Overrides */
+.text-body { color: var(--tf-text-heading) !important; }
+.text-muted { color: var(--tf-text-muted) !important; }
+.text-secondary { color: var(--tf-text-secondary) !important; }
+.fs-xs { font-size: 0.75rem !important; }
+.fs-sm { font-size: 0.85rem !important; }
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--tf-bg-canvas);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.4);
 }

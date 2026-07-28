@@ -1,10 +1,10 @@
 <?php
 $notifModel = new \App\Models\Notification();
 $unreadCount = $currentUser ? $notifModel->getUnreadCount($currentUser['id']) : 0;
-$userTheme = $currentUser['theme_mode'] ?? 'dark';
+$userTheme = 'dark'; // Force pitch-black luxury dark mode
 ?>
 <!DOCTYPE html>
-<html lang="en" data-theme="<?= htmlspecialchars($userTheme) ?>">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
