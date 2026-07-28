@@ -103,14 +103,14 @@ class TaskController extends Controller
         $taskModel = new Task();
         $taskId = $taskModel->create([
             'project_id'      => $projectId,
-            'milestone_id'   => $_POST['milestone_id'] ?: null,
-            'assigned_to'    => $_POST['assigned_to'] ?: null,
+            'milestone_id'   => (!empty($_POST['milestone_id'])) ? $_POST['milestone_id'] : null,
+            'assigned_to'    => (!empty($_POST['assigned_to'])) ? $_POST['assigned_to'] : null,
             'created_by'     => Auth::id(),
             'title'          => $title,
             'description'    => trim($_POST['description'] ?? ''),
             'status'         => $_POST['status'] ?? 'todo',
             'priority'       => $_POST['priority'] ?? 'medium',
-            'due_date'       => $_POST['due_date'] ?: null,
+            'due_date'       => (!empty($_POST['due_date'])) ? $_POST['due_date'] : null,
             'estimated_hours'=> (float)($_POST['estimated_hours'] ?? 0),
             'logged_hours'   => (float)($_POST['logged_hours'] ?? 0)
         ]);
@@ -152,13 +152,13 @@ class TaskController extends Controller
         $taskModel = new Task();
         $taskModel->update($taskId, [
             'project_id'      => $projectId,
-            'milestone_id'   => $_POST['milestone_id'] ?: null,
-            'assigned_to'    => $_POST['assigned_to'] ?: null,
+            'milestone_id'   => (!empty($_POST['milestone_id'])) ? $_POST['milestone_id'] : null,
+            'assigned_to'    => (!empty($_POST['assigned_to'])) ? $_POST['assigned_to'] : null,
             'title'          => $title,
             'description'    => trim($_POST['description'] ?? ''),
             'status'         => $_POST['status'] ?? 'todo',
             'priority'       => $_POST['priority'] ?? 'medium',
-            'due_date'       => $_POST['due_date'] ?: null,
+            'due_date'       => (!empty($_POST['due_date'])) ? $_POST['due_date'] : null,
             'estimated_hours'=> (float)($_POST['estimated_hours'] ?? 0),
             'logged_hours'   => (float)($_POST['logged_hours'] ?? 0)
         ]);

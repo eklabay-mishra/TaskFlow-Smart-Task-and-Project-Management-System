@@ -97,8 +97,8 @@ class ProjectController extends Controller
             'category'    => $_POST['category'] ?? 'General',
             'status'      => $_POST['status'] ?? 'planning',
             'priority'    => $_POST['priority'] ?? 'medium',
-            'start_date'  => $_POST['start_date'] ?: null,
-            'due_date'    => $_POST['due_date'] ?: null,
+            'start_date'  => (!empty($_POST['start_date'])) ? $_POST['start_date'] : null,
+            'due_date'    => (!empty($_POST['due_date'])) ? $_POST['due_date'] : null,
             'budget'      => (float)($_POST['budget'] ?? 0),
             'created_by'  => Auth::id()
         ]);
@@ -136,8 +136,8 @@ class ProjectController extends Controller
             'category'    => $_POST['category'] ?? 'General',
             'status'      => $_POST['status'] ?? 'planning',
             'priority'    => $_POST['priority'] ?? 'medium',
-            'start_date'  => $_POST['start_date'] ?: null,
-            'due_date'    => $_POST['due_date'] ?: null,
+            'start_date'  => (!empty($_POST['start_date'])) ? $_POST['start_date'] : null,
+            'due_date'    => (!empty($_POST['due_date'])) ? $_POST['due_date'] : null,
             'budget'      => (float)($_POST['budget'] ?? 0)
         ]);
 
