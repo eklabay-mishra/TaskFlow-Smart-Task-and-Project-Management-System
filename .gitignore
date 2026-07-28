@@ -1,0 +1,12 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Environment & Config
+/mysql_data/
+/scratch/
+*.log
+
+# Uploads directory contents except placeholder
+/public/uploads/*
+!/public/uploads/.gitkeep
