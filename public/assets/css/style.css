@@ -1,83 +1,80 @@
 /* ==========================================================================
-   TASKFLOW ENTERPRISE - LUXURY PITCH-BLACK SAAS DESIGN SYSTEM
-   Inspired by Linear, Raycast, Vercel, Supabase & ClickUp Dark Theme
+   TASKFLOW ENTERPRISE - SENIOR 5+ YRS SAAS LUXURY DARK SYSTEM
+   Pixel-perfect inspired by ClickUp, Linear & Raycast Dark Theme
    ========================================================================== */
 
 :root {
-    /* Color Tokens (Pitch Black Luxury Dark Mode Default) */
-    --tf-bg-canvas: #05070b;
-    --tf-bg-sidebar: #090c13;
-    --tf-bg-topbar: rgba(9, 12, 19, 0.85);
-    --tf-bg-card: #0d111a;
-    --tf-bg-card-glass: rgba(13, 17, 26, 0.75);
-    --tf-bg-subtle: #121826;
+    /* Rich Deep Dark Indigo Canvas */
+    --tf-bg-canvas: #090a15;
+    --tf-bg-sidebar: #070812;
+    --tf-bg-topbar: rgba(9, 10, 21, 0.85);
+    --tf-bg-card: #111224;
+    --tf-bg-card-glass: rgba(17, 18, 36, 0.75);
+    --tf-bg-subtle: #161830;
     --tf-bg-hover: rgba(255, 255, 255, 0.04);
     
-    /* Borders & Lines */
-    --tf-border: rgba(255, 255, 255, 0.07);
-    --tf-border-focus: rgba(99, 102, 241, 0.5);
-    --tf-border-glow: rgba(99, 102, 241, 0.25);
+    /* Subtle Metallic Borders */
+    --tf-border: rgba(255, 255, 255, 0.08);
+    --tf-border-glow: rgba(124, 58, 237, 0.35);
+    --tf-border-focus: rgba(124, 58, 237, 0.5);
     
-    /* Text Colors */
+    /* High Contrast Typography */
     --tf-text-heading: #ffffff;
-    --tf-text-body: #cbd5e1;
-    --tf-text-secondary: #94a3b8;
-    --tf-text-muted: #64748b;
+    --tf-text-body: #d1d5db;
+    --tf-text-secondary: #9ca3af;
+    --tf-text-muted: #6b7280;
     
-    /* Brand & Accent Gradients */
-    --tf-primary: #6366f1;
-    --tf-primary-hover: #4f46e5;
-    --tf-primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    /* Brand Accent Gradients */
+    --tf-primary: #7c3aed;
+    --tf-primary-hover: #6d28d9;
+    --tf-primary-gradient: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%);
+    --tf-purple-gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
     --tf-success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
     --tf-warning-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-    --tf-danger-gradient: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
     
-    /* Functional Status Colors */
+    /* Status Colors */
     --tf-success: #10b981;
     --tf-warning: #f59e0b;
-    --tf-danger: #ef4444;
-    --tf-info: #38bdf8;
-    --tf-purple: #a855f7;
+    --tf-danger: #f43f5e;
+    --tf-info: #3b82f6;
+    --tf-purple: #8b5cf6;
 
-    /* Border Radius System (16px - 20px) */
+    /* Border Radius & Elevation */
     --tf-radius-sm: 0.5rem;   /* 8px */
     --tf-radius-md: 0.75rem;  /* 12px */
     --tf-radius-lg: 1rem;     /* 16px */
     --tf-radius-xl: 1.25rem;  /* 20px */
-    --tf-radius-pill: 50rem;
+    --tf-radius-pill: 9999px;
     
-    /* Soft Elevation Shadows */
-    --tf-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-    --tf-shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
-    --tf-shadow-lg: 0 16px 36px -8px rgba(0, 0, 0, 0.6);
-    --tf-shadow-glow: 0 0 25px rgba(99, 102, 241, 0.15);
+    --tf-shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --tf-shadow-glow: 0 0 25px rgba(124, 58, 237, 0.18);
     
     --tf-sidebar-width: 260px;
     --tf-topbar-height: 70px;
 }
 
-/* Force Pitch-Black Body Canvas Across All Screens */
+/* Force Body Canvas Background & Grid Glow */
 html, body {
     background-color: var(--tf-bg-canvas) !important;
     color: var(--tf-text-body) !important;
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 0.925rem;
-    letter-spacing: -0.01em;
+    font-size: 0.9rem;
+    letter-spacing: -0.015em;
     min-height: 100vh;
     margin: 0;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
 
-/* Ambient Subtle Background Glow Effects */
+/* Radial Gradient Background Lighting */
 body::before {
     content: "";
     position: fixed;
-    top: -10%;
-    left: 20%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+    top: 0;
+    left: 15%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.07) 0%, transparent 65%);
     pointer-events: none;
     z-index: 0;
 }
@@ -85,11 +82,11 @@ body::before {
 body::after {
     content: "";
     position: fixed;
-    bottom: -10%;
-    right: 15%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.04) 0%, transparent 70%);
+    bottom: 0;
+    right: 10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 65%);
     pointer-events: none;
     z-index: 0;
 }
@@ -102,7 +99,7 @@ body::after {
 }
 
 /* ==========================================================================
-   SIDEBAR NAVIGATION (OBSIDIAN DARK)
+   SIDEBAR (DEEP NAVY LUXURY)
    ========================================================================== */
 
 #sidebar-wrapper {
@@ -123,7 +120,7 @@ body::after {
     background-color: transparent !important;
     color: var(--tf-text-secondary) !important;
     border: none !important;
-    padding: 0.75rem 1.25rem !important;
+    padding: 0.7rem 1.15rem !important;
     margin: 0.15rem 0.85rem !important;
     border-radius: var(--tf-radius-md) !important;
     font-weight: 500;
@@ -144,25 +141,27 @@ body::after {
     background: var(--tf-bg-hover) !important;
 }
 
-.list-group-item:hover i {
-    transform: scale(1.15);
-}
-
 .list-group-item.active {
-    background: rgba(99, 102, 241, 0.15) !important;
-    color: #818cf8 !important;
+    background: linear-gradient(90deg, rgba(124, 58, 237, 0.25) 0%, rgba(99, 102, 241, 0.1) 100%) !important;
+    color: #ffffff !important;
     font-weight: 700;
     border-left: 3px solid var(--tf-primary) !important;
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.1);
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.15);
 }
 
-/* Sidebar Toggle Collapse */
+/* Sidebar Toggle */
 #wrapper.toggled #sidebar-wrapper {
     margin-left: calc(-1 * var(--tf-sidebar-width));
 }
 
+/* Upgrade Banner Card */
+.upgrade-card {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(59, 130, 246, 0.05) 100%);
+    border: 1px solid rgba(124, 58, 237, 0.3) !important;
+}
+
 /* ==========================================================================
-   TOPBAR HEADER (GLASS TRANSLUCENT)
+   TOPBAR HEADER (TRANSLUCENT SAAS NAV)
    ========================================================================== */
 
 .topbar {
@@ -182,61 +181,71 @@ body::after {
     border: 1px solid var(--tf-border) !important;
     color: var(--tf-text-heading) !important;
     border-radius: var(--tf-radius-pill) !important;
-    padding-top: 0.55rem;
-    padding-bottom: 0.55rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     font-size: 0.85rem;
     transition: all 0.2s ease;
 }
 
 .search-input-pill:focus {
     border-color: var(--tf-border-focus) !important;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
-    background-color: #0f1422 !important;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2) !important;
+    background-color: #121428 !important;
 }
 
 /* ==========================================================================
-   CARDS & PANELS (SENIOR SAAS GLASS LUXURY)
+   CARDS & PANELS (5+ YRS SENIOR DESIGNER QUALITY)
    ========================================================================== */
 
 .card, .glass-panel {
     background: var(--tf-bg-card) !important;
     border: 1px solid var(--tf-border) !important;
     border-radius: var(--tf-radius-lg) !important;
-    box-shadow: var(--tf-shadow-md) !important;
+    box-shadow: var(--tf-shadow-card) !important;
     color: var(--tf-text-body) !important;
     transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
     border-color: var(--tf-border-glow) !important;
-    box-shadow: var(--tf-shadow-lg), var(--tf-shadow-glow) !important;
+    box-shadow: var(--tf-shadow-card), var(--tf-shadow-glow) !important;
     transform: translateY(-2px);
 }
 
 .card-header {
     background: transparent !important;
     border-bottom: 1px solid var(--tf-border) !important;
-    padding: 1.25rem 1.5rem;
+    padding: 1.15rem 1.5rem;
 }
 
 /* Stat Cards Aesthetics */
-.stat-card-num {
-    font-size: 2.1rem;
+.stat-card {
+    padding: 1.25rem 1.35rem;
+}
+
+.stat-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--tf-border);
+    font-size: 1.25rem;
+}
+
+.stat-number {
+    font-size: 2.2rem;
     font-weight: 800;
     color: var(--tf-text-heading);
     line-height: 1.1;
     letter-spacing: -0.03em;
 }
 
-.stat-card-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: var(--tf-radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--tf-border);
+.stat-trend {
+    font-size: 0.78rem;
+    font-weight: 600;
 }
 
 /* ==========================================================================
@@ -249,19 +258,20 @@ body::after {
     color: #ffffff !important;
     font-weight: 600;
     border-radius: var(--tf-radius-pill) !important;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
+    padding: 0.55rem 1.35rem;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.35) !important;
     transition: all 0.2s ease !important;
 }
 
 .btn-primary:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45) !important;
+    box-shadow: 0 6px 22px rgba(124, 58, 237, 0.5) !important;
 }
 
 .btn-outline-primary {
-    border-color: rgba(99, 102, 241, 0.4) !important;
-    color: #818cf8 !important;
-    background: rgba(99, 102, 241, 0.08) !important;
+    border-color: rgba(124, 58, 237, 0.4) !important;
+    color: #a78bfa !important;
+    background: rgba(124, 58, 237, 0.08) !important;
     border-radius: var(--tf-radius-pill) !important;
     font-weight: 600;
 }
@@ -284,7 +294,67 @@ body::after {
 }
 
 /* ==========================================================================
-   TABLES (OBSIDIAN DARK MATRIX)
+   CHARTS & LEGENDS (CENTER TEXT DONUTS + DETAILED LEGENDS)
+   ========================================================================== */
+
+.donut-chart-container {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.donut-center-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+}
+
+.donut-center-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.donut-center-text {
+    font-size: 0.725rem;
+    color: var(--tf-text-secondary);
+    margin-top: 2px;
+}
+
+.chart-legend-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.chart-legend-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    font-size: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.chart-legend-item:last-child {
+    border-bottom: none;
+}
+
+.legend-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+/* ==========================================================================
+   TABLES & WIDGETS
    ========================================================================== */
 
 .table-responsive {
@@ -317,26 +387,21 @@ body::after {
     color: var(--tf-text-body);
 }
 
-.table tr:last-child td {
-    border-bottom: none !important;
+/* Date Box for Deadlines */
+.date-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--tf-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
-/* Progress Bars */
-.progress {
-    background-color: rgba(255, 255, 255, 0.06) !important;
-    border-radius: var(--tf-radius-pill) !important;
-    overflow: hidden;
-}
-
-.progress-bar {
-    background: var(--tf-primary-gradient) !important;
-    border-radius: var(--tf-radius-pill) !important;
-}
-
-/* ==========================================================================
-   BADGES & PILLS
-   ========================================================================== */
-
+/* Status Badges */
 .badge-status-active, .badge-status-done {
     background: rgba(16, 185, 129, 0.15) !important;
     color: #34d399 !important;
@@ -350,9 +415,9 @@ body::after {
 }
 
 .badge-status-todo, .badge-status-on_hold {
-    background: rgba(100, 116, 139, 0.15) !important;
-    color: #94a3b8 !important;
-    border: 1px solid rgba(100, 116, 139, 0.3);
+    background: rgba(107, 114, 128, 0.15) !important;
+    color: #9ca3af !important;
+    border: 1px solid rgba(107, 114, 128, 0.3);
 }
 
 .badge-status-review {
@@ -361,22 +426,10 @@ body::after {
     border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
-.badge-priority-low {
-    background: rgba(148, 163, 184, 0.15) !important;
-    color: #cbd5e1 !important;
-}
-.badge-priority-medium {
-    background: rgba(56, 189, 248, 0.15) !important;
-    color: #38bdf8 !important;
-}
-.badge-priority-high {
-    background: rgba(245, 158, 11, 0.15) !important;
-    color: #fbbf24 !important;
-}
-.badge-priority-urgent {
-    background: rgba(239, 68, 68, 0.15) !important;
-    color: #f87171 !important;
-}
+.badge-priority-low { background: rgba(156, 163, 175, 0.15) !important; color: #d1d5db !important; }
+.badge-priority-medium { background: rgba(59, 130, 246, 0.15) !important; color: #60a5fa !important; }
+.badge-priority-high { background: rgba(245, 158, 11, 0.15) !important; color: #fbbf24 !important; }
+.badge-priority-urgent { background: rgba(244, 63, 94, 0.15) !important; color: #f87171 !important; }
 
 .tag-pill {
     display: inline-block;
@@ -391,86 +444,33 @@ body::after {
 
 /* Avatars */
 .avatar-sm {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     object-fit: cover;
     border: 1px solid var(--tf-border);
 }
 
 .avatar-md {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid var(--tf-border);
 }
 
-/* ==========================================================================
-   KANBAN PIPELINE BOARD
-   ========================================================================== */
-
-.kanban-board {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(280px, 1fr));
-    gap: 1.25rem;
-    overflow-x: auto;
-    padding-bottom: 1rem;
+/* Minimal Subtle Alert Banner */
+.alert-minimal {
+    background: rgba(16, 185, 129, 0.08) !important;
+    border: 1px solid rgba(16, 185, 129, 0.25) !important;
+    color: #34d399 !important;
+    border-radius: var(--tf-radius-md) !important;
+    padding: 0.65rem 1.15rem;
 }
 
-.kanban-column {
-    background: rgba(9, 12, 19, 0.6) !important;
-    border: 1px solid var(--tf-border);
-    border-radius: var(--tf-radius-xl);
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    min-height: 600px;
-}
-
-.kanban-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-weight: 700;
-    font-size: 0.875rem;
-    padding-bottom: 0.85rem;
-    margin-bottom: 0.85rem;
-    border-bottom: 1px solid var(--tf-border);
-}
-
-.kanban-cards {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-}
-
-.kanban-card {
-    background: var(--tf-bg-card) !important;
-    border: 1px solid var(--tf-border) !important;
-    border-radius: var(--tf-radius-lg);
-    padding: 1.15rem;
-    cursor: grab;
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.kanban-card:hover {
-    border-color: var(--tf-border-glow) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-}
-
-.kanban-card:active {
-    cursor: grabbing;
-}
-
-/* ==========================================================================
-   MODALS, DROPDOWNS & ALERTS (OBSIDIAN DARK)
-   ========================================================================== */
-
+/* Modals & Inputs */
 .modal-content, .dropdown-menu {
-    background-color: #0c101a !important;
+    background-color: #0d0e1d !important;
     border: 1px solid var(--tf-border) !important;
     border-radius: var(--tf-radius-xl) !important;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8) !important;
@@ -491,7 +491,7 @@ body::after {
 }
 
 .form-control, .form-select {
-    background-color: #080b12 !important;
+    background-color: #0a0b17 !important;
     border: 1px solid var(--tf-border) !important;
     color: var(--tf-text-heading) !important;
     border-radius: var(--tf-radius-md) !important;
@@ -499,23 +499,9 @@ body::after {
 
 .form-control:focus, .form-select:focus {
     border-color: var(--tf-border-focus) !important;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15) !important;
 }
 
-/* Flash alerts translucent dark styling */
-.alert-success {
-    background: rgba(16, 185, 129, 0.12) !important;
-    border: 1px solid rgba(16, 185, 129, 0.3) !important;
-    color: #34d399 !important;
-}
-
-.alert-danger {
-    background: rgba(239, 68, 68, 0.12) !important;
-    border: 1px solid rgba(239, 68, 68, 0.3) !important;
-    color: #f87171 !important;
-}
-
-/* Text Utility Overrides */
 .text-body { color: var(--tf-text-heading) !important; }
 .text-muted { color: var(--tf-text-muted) !important; }
 .text-secondary { color: var(--tf-text-secondary) !important; }
@@ -531,9 +517,9 @@ body::after {
     background: var(--tf-bg-canvas);
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.12);
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(99, 102, 241, 0.4);
+    background: rgba(124, 58, 237, 0.4);
 }
