@@ -22,7 +22,10 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.
 # Copy application files
 COPY . /var/www/html
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html
+# Set permissions and entrypoint
+RUN chmod +x /var/www/html/docker-entrypoint.sh && \
+    chown -R www-data:www-data /var/www/html
 
-EXPOSE 80
+EXPOSE 80 10000
+
+ENTRYPOINT ["/var/www/html/docker-entrypoint.sh"]

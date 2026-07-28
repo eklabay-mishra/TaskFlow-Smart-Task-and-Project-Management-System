@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: taskflow-enterprise
+    runtime: docker
+    plan: free
+    region: singapore
+    branch: main
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: APP_NAME
+        value: TaskFlow Enterprise
+      - key: DB_HOST
+        value: mysql-taskflow.render.com
+      - key: DB_PORT
+        value: "3306"
+      - key: DB_NAME
+        value: taskflow_db
+      - key: DB_USER
+        value: root
+      - key: DB_PASS
+        value: secret
