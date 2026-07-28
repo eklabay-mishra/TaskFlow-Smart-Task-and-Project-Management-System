@@ -4,66 +4,61 @@
         <p class="text-secondary mb-0">Here is your project & task activity performance overview.</p>
     </div>
     <div class="d-flex gap-2">
-        <?php if (\Core\Auth::isAdmin() || \Core\Auth::isManager()): ?>
-            <a href="/projects" class="btn btn-primary rounded-pill px-3 shadow-sm">
-                <i class="bi bi-plus-lg me-1"></i> New Project
-            </a>
-        <?php endif; ?>
-        <a href="/tasks" class="btn btn-outline-primary rounded-pill px-3">
-            <i class="bi bi-plus-lg me-1"></i> Create Task
+        <a href="/kanban" class="btn btn-primary rounded-pill px-4 shadow-sm">
+            <i class="bi bi-kanban me-1"></i> Open Pipeline Board
         </a>
     </div>
 </div>
 
-<!-- KPI Cards -->
+<!-- KPI Summary Cards -->
 <div class="row g-3 mb-4">
     <div class="col-xl-3 col-sm-6">
-        <div class="card border-0 shadow-sm p-3">
+        <div class="card p-3">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
-                    <span class="text-secondary fs-sm fw-medium d-block mb-1">Total Projects</span>
-                    <h3 class="fw-bold mb-0 text-primary"><?= $metrics['total_projects'] ?></h3>
+                    <span class="text-muted fs-xs fw-semibold d-block mb-1">TOTAL PROJECTS</span>
+                    <h2 class="fw-extrabold mb-0 text-primary"><?= $metrics['total_projects'] ?></h2>
                 </div>
-                <div class="badge bg-primary-subtle text-primary p-3 rounded-circle fs-4">
+                <div class="badge bg-primary-subtle text-primary p-3 rounded-3 fs-4">
                     <i class="bi bi-folder-fill"></i>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-xl-3 col-sm-6">
-        <div class="card border-0 shadow-sm p-3">
+        <div class="card p-3">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
-                    <span class="text-secondary fs-sm fw-medium d-block mb-1">Active Projects</span>
-                    <h3 class="fw-bold mb-0 text-info"><?= $metrics['active_projects'] ?></h3>
+                    <span class="text-muted fs-xs fw-semibold d-block mb-1">ACTIVE PIPELINES</span>
+                    <h2 class="fw-extrabold mb-0 text-info"><?= $metrics['active_projects'] ?></h2>
                 </div>
-                <div class="badge bg-info-subtle text-info p-3 rounded-circle fs-4">
+                <div class="badge bg-info-subtle text-info p-3 rounded-3 fs-4">
                     <i class="bi bi-activity"></i>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-xl-3 col-sm-6">
-        <div class="card border-0 shadow-sm p-3">
+        <div class="card p-3">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
-                    <span class="text-secondary fs-sm fw-medium d-block mb-1">Completed Tasks</span>
-                    <h3 class="fw-bold mb-0 text-success"><?= $metrics['completed_tasks'] ?> / <?= $metrics['total_tasks'] ?></h3>
+                    <span class="text-muted fs-xs fw-semibold d-block mb-1">COMPLETED TASKS</span>
+                    <h2 class="fw-extrabold mb-0 text-success"><?= $metrics['completed_tasks'] ?> <span class="fs-6 text-muted font-normal">/ <?= $metrics['total_tasks'] ?></span></h2>
                 </div>
-                <div class="badge bg-success-subtle text-success p-3 rounded-circle fs-4">
+                <div class="badge bg-success-subtle text-success p-3 rounded-3 fs-4">
                     <i class="bi bi-check-circle-fill"></i>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-xl-3 col-sm-6">
-        <div class="card border-0 shadow-sm p-3">
+        <div class="card p-3">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
-                    <span class="text-secondary fs-sm fw-medium d-block mb-1">Pending My Tasks</span>
-                    <h3 class="fw-bold mb-0 text-warning"><?= $metrics['my_pending_tasks'] ?></h3>
+                    <span class="text-muted fs-xs fw-semibold d-block mb-1">PENDING TASKS</span>
+                    <h2 class="fw-extrabold mb-0 text-warning"><?= $metrics['my_pending_tasks'] ?></h2>
                 </div>
-                <div class="badge bg-warning-subtle text-warning p-3 rounded-circle fs-4">
+                <div class="badge bg-warning-subtle text-warning p-3 rounded-3 fs-4">
                     <i class="bi bi-clock-history"></i>
                 </div>
             </div>
@@ -74,37 +69,36 @@
 <!-- Charts Section -->
 <div class="row g-4 mb-4">
     <div class="col-lg-6">
-        <div class="card border-0 shadow-sm p-4 h-100">
+        <div class="card p-4 h-100">
             <h5 class="fw-bold mb-3"><i class="bi bi-pie-chart-fill text-primary me-2"></i>Tasks by Status Breakdown</h5>
-            <div style="height: 260px; position: relative;">
+            <div style="height: 270px; position: relative;">
                 <canvas id="statusChart"></canvas>
             </div>
         </div>
     </div>
     <div class="col-lg-6">
-        <div class="card border-0 shadow-sm p-4 h-100">
+        <div class="card p-4 h-100">
             <h5 class="fw-bold mb-3"><i class="bi bi-bar-chart-fill text-info me-2"></i>Tasks by Priority Distribution</h5>
-            <div style="height: 260px; position: relative;">
+            <div style="height: 270px; position: relative;">
                 <canvas id="priorityChart"></canvas>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Projects & Tasks Tables -->
+<!-- Recent Projects & Logs -->
 <div class="row g-4 mb-4">
-    <!-- Recent Projects -->
     <div class="col-lg-7">
-        <div class="card border-0 shadow-sm h-100">
+        <div class="card h-100">
             <div class="card-header bg-transparent py-3 border-0 d-flex justify-content-between align-items-center">
-                <h5 class="fw-bold mb-0"><i class="bi bi-folder-check text-primary me-2"></i>Recent Projects</h5>
+                <h5 class="fw-bold mb-0"><i class="bi bi-folder-check text-primary me-2"></i>Recent Projects Workspace</h5>
                 <a href="/projects" class="btn btn-sm btn-link text-decoration-none">View All</a>
             </div>
             <div class="table-responsive">
                 <table class="table table-hover align-middle mb-0">
-                    <thead class="table-light fs-xs text-uppercase text-secondary">
+                    <thead class="fs-xs text-uppercase text-muted">
                         <tr>
-                            <th>Project</th>
+                            <th>Project Title</th>
                             <th>Status</th>
                             <th>Progress</th>
                             <th>Action</th>
@@ -123,7 +117,7 @@
                                         <span class="text-muted fs-xs"><?= htmlspecialchars($p['category']) ?></span>
                                     </td>
                                     <td>
-                                        <span class="badge badge-status-<?= $p['status'] ?> rounded-pill">
+                                        <span class="badge badge-status-<?= $p['status'] ?> rounded-pill px-3 py-1">
                                             <?= strtoupper(str_replace('_', ' ', $p['status'])) ?>
                                         </span>
                                     </td>
@@ -136,7 +130,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="/projects/<?= $p['id'] ?>" class="btn btn-sm btn-light border"><i class="bi bi-eye"></i></a>
+                                        <a href="/projects/<?= $p['id'] ?>" class="btn btn-sm btn-outline-secondary rounded-circle p-2 d-inline-flex align-items-center justify-content-center" style="width: 32px; height: 32px;"><i class="bi bi-eye"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -149,9 +143,9 @@
 
     <!-- Recent Activity Log -->
     <div class="col-lg-5">
-        <div class="card border-0 shadow-sm h-100">
+        <div class="card h-100">
             <div class="card-header bg-transparent py-3 border-0">
-                <h5 class="fw-bold mb-0"><i class="bi bi-clock-history text-purple me-2"></i>System Activity Log</h5>
+                <h5 class="fw-bold mb-0"><i class="bi bi-clock-history text-purple me-2"></i>Audit Activity Stream</h5>
             </div>
             <div class="card-body p-0">
                 <div class="list-group list-group-flush fs-sm">
@@ -159,7 +153,7 @@
                         <div class="p-4 text-center text-muted">No activity logs recorded yet.</div>
                     <?php else: ?>
                         <?php foreach ($activityLogs as $log): ?>
-                            <div class="list-group-item py-3">
+                            <div class="list-group-item py-3 bg-transparent">
                                 <div class="d-flex align-items-start gap-2">
                                     <img src="/uploads/<?= htmlspecialchars($log['user_avatar'] ?? 'default-avatar.png') ?>" class="avatar-sm mt-1" alt="user" onerror="this.src='https://ui-avatars.com/api/?name=<?= urlencode($log['user_name']) ?>'">
                                     <div class="flex-grow-1">
@@ -167,7 +161,7 @@
                                             <strong class="text-body"><?= htmlspecialchars($log['user_name']) ?></strong>
                                             <small class="text-muted fs-xs"><?= date('M d, H:i', strtotime($log['created_at'])) ?></small>
                                         </div>
-                                        <div class="text-secondary mt-1"><?= htmlspecialchars($log['description']) ?></div>
+                                        <div class="text-secondary mt-1 fs-xs"><?= htmlspecialchars($log['description']) ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -179,15 +173,18 @@
     </div>
 </div>
 
-<!-- Chart.js Render Script -->
+<!-- Chart.js Config -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+    Chart.defaults.color = '#94a3b8';
+    Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
+
     // 1. Status Chart
     const ctxStatus = document.getElementById('statusChart').getContext('2d');
     new Chart(ctxStatus, {
         type: 'doughnut',
         data: {
-            labels: ['To Do', 'In Progress', 'Under Review', 'Completed'],
+            labels: ['Backlog', 'In Progress', 'Under Review', 'Completed'],
             datasets: [{
                 data: [
                     <?= $statusCounts['todo'] ?>,
@@ -195,14 +192,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     <?= $statusCounts['review'] ?>,
                     <?= $statusCounts['done'] ?>
                 ],
-                backgroundColor: ['#64748b', '#0d6efd', '#fd7e14', '#10b981']
+                backgroundColor: ['#64748b', '#6366f1', '#f59e0b', '#10b981'],
+                borderWidth: 0
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                legend: { position: 'bottom' }
+                legend: { position: 'bottom', labels: { padding: 20 } }
             }
         }
     });
@@ -214,22 +212,23 @@ document.addEventListener('DOMContentLoaded', () => {
         data: {
             labels: ['Low', 'Medium', 'High', 'Urgent'],
             datasets: [{
-                label: 'Task Count',
+                label: 'Tasks Count',
                 data: [
                     <?= $priorityCounts['low'] ?>,
                     <?= $priorityCounts['medium'] ?>,
                     <?= $priorityCounts['high'] ?>,
                     <?= $priorityCounts['urgent'] ?>
                 ],
-                backgroundColor: ['#94a3b8', '#0284c7', '#ea580c', '#dc2626'],
-                borderRadius: 6
+                backgroundColor: ['#94a3b8', '#38bdf8', '#fbbf24', '#f87171'],
+                borderRadius: 8
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-                y: { beginAtZero: true, ticks: { precision: 0 } }
+                y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.05)' } },
+                x: { grid: { display: false } }
             },
             plugins: {
                 legend: { display: false }

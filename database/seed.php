@@ -27,7 +27,7 @@ try {
     $memberPassword= password_hash('Member@123', PASSWORD_BCRYPT);
 
     $db->execute("INSERT INTO users (id, role_id, name, email, password_hash, avatar, phone, bio, status) VALUES
-        (1, 1, 'Alexander Pierce', 'admin@taskflow.com', '$adminPassword', 'avatar-admin.png', '+1 (555) 019-2834', 'Lead System Administrator at TaskFlow Corp.', 'active'),
+        (1, 1, 'Eklabay Mishra', 'admin@taskflow.com', '$adminPassword', 'avatar-admin.png', '+1 (555) 019-2834', 'Lead System Administrator at TaskFlow Corp.', 'active'),
         (2, 2, 'Sophia Martinez', 'pm@taskflow.com', '$pmPassword', 'avatar-pm.png', '+1 (555) 014-9821', 'Senior Technical Project Manager with 8+ years experience.', 'active'),
         (3, 3, 'David Chen', 'member@taskflow.com', '$memberPassword', 'avatar-david.png', '+1 (555) 017-3344', 'Full Stack Developer specialized in PHP & JS.', 'active'),
         (4, 3, 'Emily Watson', 'emily@taskflow.com', '$memberPassword', 'avatar-emily.png', '+1 (555) 018-4455', 'UI/UX Designer and Frontend Specialist.', 'active'),

@@ -7,7 +7,7 @@ if (!is_dir($uploadDir)) {
 }
 
 $avatars = [
-    'avatar-admin.png'  => ['Alexander Pierce', [79, 70, 229]],  // Primary Indigo
+    'avatar-admin.png'  => ['Eklabay Mishra',   [79, 70, 229]],  // Primary Indigo
     'avatar-pm.png'     => ['Sophia Martinez',  [245, 158, 11]], // Warning Amber
     'avatar-david.png'  => ['David Chen',       [16, 185, 129]], // Success Emerald
     'avatar-emily.png'  => ['Emily Watson',     [236, 72, 153]], // Pink
