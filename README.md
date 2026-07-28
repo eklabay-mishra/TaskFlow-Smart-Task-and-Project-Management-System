@@ -1,5 +1,19 @@
 # TaskFlow Enterprise - Smart Task & Project Management System
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Render-7c3aed?style=for-the-badge&logo=render)](https://taskflow-smart-task-and-project.onrender.com)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/eklabay-mishra/TaskFlow-Smart-Task-and-Project-Management-System)
+[![PHP 8.2](https://img.shields.io/badge/PHP-8.2-777BB4?style=for-the-badge&logo=php)](https://www.php.net/)
+[![MySQL 8.0](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql)](https://www.mysql.com/)
+
+> 🌐 **Live Demo URL**: [https://taskflow-smart-task-and-project.onrender.com](https://taskflow-smart-task-and-project.onrender.com)
+
+### 🔐 Demo Accounts (Instant 1-Click Sign In):
+- **Admin**: `admin@taskflow.com` | `Admin@123` (Name: **Eklabay Mishra**)
+- **Project Manager**: `pm@taskflow.com` | `Manager@123` (Name: **Sophia Martinez**)
+- **Team Member**: `member@taskflow.com` | `Member@123` (Name: **David Chen**)
+
+---
+
 TaskFlow Enterprise is a production-quality, full-stack Project & Task Management System built with **PHP 8 (Pure OOP & Custom MVC Architecture)**, **MySQL**, **HTML5/CSS3**, **Bootstrap 5**, **JavaScript (ES6)**, **AJAX**, **Chart.js**, and **SweetAlert2**.
 
 Designed to be portfolio-quality, deployment-ready, and interview-ready, TaskFlow avoids dummy data or placeholder pages—every single feature is fully backed by real MySQL database operations and security guards.
